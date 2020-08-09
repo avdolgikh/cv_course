@@ -123,3 +123,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+/w2/facial-keypoints/old_models
+/w2/facial-keypoints/models
+/w2/facial-keypoints/resnet_models
+/w2/facial-keypoints/facerecogn_images.npy
+
+/w4/face-recognition-task/Face_Recognition_data
+/w4/face-recognition-task/Face_Recognition_data.zip
+/w4/face-recognition-task/facerecogn_images.npy
+/w4/face-recognition-task/*.h5
+
