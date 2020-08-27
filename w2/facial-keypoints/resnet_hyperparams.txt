@@ -28,3 +28,5 @@
 (28, 15, 3, 0.1, 0.001, False, 2, 512, 'relu', 0.5, True, 'activation_40', 0.0187)
 (29, 15, 3, 0.1, 0.001, True, 2, 1024, 'selu', 0.3, True, 'activation_40', 0.0151)
 (30, 15, 3, 0.1, 0.001, False, 2, 1024, 'relu', 0.5, True, 'activation_22', 0.0187)
+(31, 15, 3, 0.1, 0.001, False, 2, 1024, 'selu', 0.3, True, None, 'activation_34', 0.0395)
+(32, 15, 3, 0.1, 0.001, False, 2, 1024, 'selu', 0.3, True, None, 'activation_34', 0.0349)
