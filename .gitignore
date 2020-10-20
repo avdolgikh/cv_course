@@ -128,9 +128,13 @@ dmypy.json
 /w2/facial-keypoints/models
 /w2/facial-keypoints/resnet_models
 /w2/facial-keypoints/facerecogn_images.npy
+/w2/facial-keypoints/good_output_examples
+/w2/facial-keypoints/output_examples
 
 /w4/face-recognition-task/Face_Recognition_data
 /w4/face-recognition-task/Face_Recognition_data.zip
 /w4/face-recognition-task/facerecogn_images.npy
 /w4/face-recognition-task/*.h5
+/w4/face-recognition-task/keypoints_results*
+/w4/face-recognition-task/heatmaps
 
