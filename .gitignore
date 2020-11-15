@@ -138,3 +138,7 @@ dmypy.json
 /w4/face-recognition-task/keypoints_results*
 /w4/face-recognition-task/heatmaps
 
+/w5/aligned_celebA
+/w5/checkpoint
+/w5/sample_faces
+

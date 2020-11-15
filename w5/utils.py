@@ -6,6 +6,9 @@ import math
 import random
 import scipy.misc
 import numpy as np
+import skimage.transform
+import skimage.io
+from matplotlib import pyplot as plt
 
 def get_image(image_path, image_size, is_crop=True):
     return transform(imread(image_path), image_size, is_crop)
@@ -14,26 +17,33 @@ def save_images(images, size, image_path):
     return imsave(inverse_transform(images), size, image_path)
 
 def imread(path):
-    return scipy.misc.imread(path).astype(np.float)
-
-def merge_images(images, size):
-    return inverse_transform(images)
-
-def merge(images, size):
-    h, w = images.shape[1], images.shape[2]
-    img = np.zeros((int(h * size[0]), int(w * size[1]), 3))
-    for idx, image in enumerate(images):
-        i = idx % size[1]
-        j = idx // size[1]
-        img[j*h:j*h+h, i*w:i*w+w, :] = image
-    return img
+    return skimage.io.imread(path)
 
 def imsave(images, size, path):
-    img = merge(images, size)
-    return scipy.misc.imsave(path, (255*img).astype(np.uint8))
+    figure = plt.figure(figsize=(20, 20))
+    for i, image in enumerate(images):
+        plt.subplot(5, 5, i+1)
+        plt.imshow(image) # (255*img).astype(np.uint8)
+        plt.axis('off')
+        
+    with open(path, 'wb') as file:
+        figure.savefig(file, bbox_inches='tight')
+        plt.close(figure)
+    
+    #for i, img in enumerate(images):
+    #    skimage.io.imsave(paths[i], (255*img).astype(np.uint8) )
 
-def transform(image, npx=64, is_crop=True):
-    return np.array(image)/127.5 - 1.
+def transform(image, final_size, is_crop=True):
+    if is_crop:
+        size = image.shape[1]
+        if image.shape[0] > size:
+            crop_size = image.shape[0] - size
+            top_crop = int(round( crop_size * .65 ))
+            bottom_crop = crop_size - top_crop
+            image = image[ top_crop : -bottom_crop, :]
+    image = skimage.transform.resize( image, (final_size, final_size), anti_aliasing=True)
+    image = image * 2. - 1.
+    return image
 
 def inverse_transform(images):
-    return (images+1.)/2.
+    return (np.array(images) + 1.) / 2.
