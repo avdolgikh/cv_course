@@ -13,22 +13,25 @@ from matplotlib import pyplot as plt
 def get_image(image_path, image_size, is_crop=True):
     return transform(imread(image_path), image_size, is_crop)
 
-def save_images(images, size, image_path):
-    return imsave(inverse_transform(images), size, image_path)
+def save_images(images, size, image_path, show=False):
+    return imsave(inverse_transform(images), size, image_path, show)
 
 def imread(path):
     return skimage.io.imread(path)
 
-def imsave(images, size, path):
+def imsave(images, size, path, show):
     figure = plt.figure(figsize=(20, 20))
     for i, image in enumerate(images):
         plt.subplot(5, 5, i+1)
         plt.imshow(image) # (255*img).astype(np.uint8)
         plt.axis('off')
         
-    with open(path, 'wb') as file:
-        figure.savefig(file, bbox_inches='tight')
-        plt.close(figure)
+    if not show:
+        with open(path, 'wb') as file:
+            figure.savefig(file, bbox_inches='tight')
+            plt.close(figure)
+    else:
+        plt.show()
     
     #for i, img in enumerate(images):
     #    skimage.io.imsave(paths[i], (255*img).astype(np.uint8) )
